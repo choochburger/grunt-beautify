@@ -49,7 +49,8 @@ module.exports = function (grunt) {
     var endOfLineCharacters = options.endOfLineCharacters || require('os').EOL;
 
     // Beautify specified files.
-    grunt.file.expandFiles(this.file.src).forEach(function (filepath) {
+    grunt.file.expand(this.data).forEach(function (filepath) {
+      console.info(filepath);
       var result = beautifier.beautifyJs(grunt.file.read(filepath), options);
       if (options.endOfLineNormalization) {
         result = result.replace(/\r\n|\n\r|\r|\n/g, endOfLineCharacters);
