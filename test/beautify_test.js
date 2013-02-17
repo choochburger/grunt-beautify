@@ -27,7 +27,8 @@ exports['beautify.git'] = {
     },
     'dummy': function (test) {
 
-        test.expect(0);
+        test.expect(1);
+        test.ok(true);
         test.done();
     }
 };
