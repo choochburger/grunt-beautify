@@ -54,6 +54,11 @@ module.exports = function (grunt) {
       if (options.endOfLineNormalization) {
         result = result.replace(/\r\n|\n\r|\r|\n/g, endOfLineCharacters);
       }
+      if (options.forceTrailingNewline) {
+        if (!(new RegExp(endOfLineCharacters + "$")).test(result)) {
+          result += endOfLineCharacters;
+        }
+      }
       grunt.file.write(filepath, result);
     });
 
