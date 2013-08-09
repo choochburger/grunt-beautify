@@ -33,7 +33,12 @@ module.exports = function (grunt) {
 
     var options = null;
     var tmp = grunt.config(['beautifier', this.target, 'options']);
-    if (typeof tmp === 'object') {
+    
+    // Quick n' dirty patch to get options to be passed to beautifier
+    if (this.options && typeof this.options ==='function') {
+      grunt.verbose.writeln('Using this.options().');
+      options = this.options();
+    } else if (typeof tmp === 'object') {
       grunt.verbose.writeln('Using "' + this.target + '" beautifier options.');
       options = tmp;
     } else {
